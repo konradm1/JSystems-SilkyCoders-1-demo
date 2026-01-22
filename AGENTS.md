@@ -5,13 +5,17 @@
 ## Project Overview
 This repo hosts a Proof of Concept for Sinsay returns/complaints verification using multimodal AI. The target flow is a form-to-chat experience where users submit order context and images, then receive a streamed verdict in Polish. The backend is Spring Boot + Spring AI; the frontend is React 19 + assistant-ui. Streaming must follow the Vercel AI SDK Data Stream Protocol.
 
-## Current vs. Planned Structure
-- **Current (in repo)**: single Spring Boot app under `src/` with Maven wrapper and minimal tests.
-- **Planned (ADR)**: a monorepo with separate `backend/` and `frontend/` directories and a build that bundles the frontend into the backend `static/` folder. If you introduce the monorepo layout, keep the existing root `pom.xml` aligned or migrate intentionally.
+## Current Structure (Monorepo)
+- **`backend/`**: Spring Boot 3.5.9 app with `src/main/java` and `src/main/resources`.
+- **`frontend/`**: React 19 + assistant-ui app.
+- **Root**: Contains `pom.xml` (parent) and `docs/`.
 
 ## Project Structure & Module Organization
-- `src/main/java/com/silkycoders1/jsystemssilkycodders1/`: Spring Boot entry point.
-- `src/main/resources/`: `application.properties`, plus `static/` and `templates/` (frontend build output targets `static/`).
+- `backend/src/main/java/com/silkycoders1/jsystemssilkycodders1/`: Spring Boot entry point.
+- `backend/src/main/java/com/sinsay/`: Main application logic (Returns/Complaints).
+- `backend/src/main/resources/`: `application.properties`, SQLite DB.
+- `backend/src/main/resources/static/`: Target for Frontend build.
+- `frontend/src/`: React App source.
 - `src/test/java/com/silkycoders1/jsystemssilkycodders1/`: JUnit tests.
 - `docs/`: PRD, ADR, and research notes used as requirements.
 - `docs/sinay/`: terms of returns and complaints from Sinsay as input for AI Agent system prompt / knowledge base. 

@@ -4,6 +4,7 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
+@org.springframework.context.annotation.ComponentScan({ "com.silkycoders1", "com.sinsay" })
 public class JSystemsSilkyCodders1Application {
 
 	public static void main(String[] args) {
